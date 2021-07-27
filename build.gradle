@@ -1,0 +1,6 @@
+group 'dev.agius'
+version '1.0.0-SNAPSHOT'
+
+ext {
+    jedisVersion = '3.6.3'
+}
