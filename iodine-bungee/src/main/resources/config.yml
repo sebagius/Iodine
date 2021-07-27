@@ -1,0 +1,2 @@
+# Set to true if this is your only server you want to integrate with iodine
+independant: false

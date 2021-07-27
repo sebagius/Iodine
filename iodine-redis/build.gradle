@@ -9,4 +9,5 @@ repositories {
 
 dependencies {
     implementation("redis.clients:jedis:${rootProject.jedisVersion}")
+    implementation("com.google.code.gson:gson:${rootProject.gsonVersion}")
 }

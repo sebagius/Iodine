@@ -1,0 +1,20 @@
+package dev.agius.iodine.iodinebungee.message;
+
+import com.google.gson.annotations.SerializedName;
+
+public class PlayerUpdateMessage {
+    @SerializedName("player_name")
+    public String playerName;
+
+    @SerializedName("player_uuid")
+    public String playerUuid;
+
+    @SerializedName("player_server")
+    public String playerServer;
+
+    public PlayerUpdateMessage(String playerName, String playerUuid, String playerServer) {
+        this.playerName = playerName;
+        this.playerUuid = playerUuid;
+        this.playerServer = playerServer;
+    }
+}

@@ -3,4 +3,5 @@ version '1.0.0-SNAPSHOT'
 
 ext {
     jedisVersion = '3.6.3'
+    gsonVersion = '2.8.7'
 }
