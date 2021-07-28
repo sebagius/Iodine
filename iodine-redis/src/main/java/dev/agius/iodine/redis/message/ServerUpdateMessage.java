@@ -3,6 +3,8 @@ package dev.agius.iodine.redis.message;
 import com.google.gson.annotations.SerializedName;
 
 public class ServerUpdateMessage {
+    private final String type = "SERVER_UPDATE";
+
     @SerializedName("server_name")
     public String serverName;
 

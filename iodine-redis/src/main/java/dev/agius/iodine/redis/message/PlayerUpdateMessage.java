@@ -3,6 +3,8 @@ package dev.agius.iodine.redis.message;
 import com.google.gson.annotations.SerializedName;
 
 public class PlayerUpdateMessage {
+    private final String type = "PLAYER_UPDATE";
+
     @SerializedName("player_name")
     public String playerName;
 

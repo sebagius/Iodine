@@ -10,7 +10,7 @@ import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
 public class PlayerListener implements Listener {
-    private RedisController redisController;
+    private final RedisController redisController;
 
     public PlayerListener(RedisController redisController) {
         this.redisController = redisController;
@@ -18,7 +18,7 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPostLogin(PostLoginEvent event) {
-        redisController.publishMessage(new PlayerCountUpdateMessage(1));
+        redisController.publishMessage(new PlayerCountUpdateMessage(1), "player_count");
     }
 
     @EventHandler
@@ -26,12 +26,12 @@ public class PlayerListener implements Listener {
         redisController.publishMessage(new PlayerUpdateMessage(
                 event.getPlayer().getName(),
                 event.getPlayer().getUniqueId().toString(),
-                event.getServer().getInfo().getName())
+                event.getServer().getInfo().getName()), "player_update"
         );
     }
 
     @EventHandler
     public void onPlayerDisconnect(PlayerDisconnectEvent event) {
-        redisController.publishMessage(new PlayerCountUpdateMessage(-1));
+        redisController.publishMessage(new PlayerCountUpdateMessage(-1), "player_count");
     }
 }

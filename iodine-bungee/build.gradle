@@ -7,8 +7,7 @@ plugins {
 
 repositories {
     mavenCentral()
-    maven {url= "https://oss.sonatype.org/content/repositories/snapshots"}
-
+    maven {name = 'bungee-repo';url= "https://oss.sonatype.org/content/repositories/snapshots"}
 }
 
 dependencies {
@@ -18,7 +17,7 @@ dependencies {
 }
 
 processResources {
-    duplicatesStrategy = 'include'
+    duplicatesStrategy = 'INCLUDE'
     from(sourceSets.main.resources.srcDirs) {
         filter ReplaceTokens, tokens: [version: rootProject.version]
     }

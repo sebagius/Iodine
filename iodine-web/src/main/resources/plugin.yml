@@ -1,0 +1,3 @@
+main: dev.agius.iodine.iodineweb.SpigotEntry
+name: IodineWeb
+version: @version@

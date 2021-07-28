@@ -9,6 +9,11 @@ public class BungeeRedisController extends RedisController {
     private final IodineBungee iodineBungee;
     private final String uniqueId;
 
+    /**
+     * Initialise the BungeeRedisController with the plugin instance and the proxy's unique id
+     * @param iodineBungee the instance of the plugin
+     * @param uniqueId the current proxy server's unique id
+     */
     public BungeeRedisController(IodineBungee iodineBungee, String uniqueId) {
         super(ServerType.BUNGEECORD);
         this.iodineBungee = iodineBungee;
@@ -16,9 +21,9 @@ public class BungeeRedisController extends RedisController {
     }
 
     @Override
-    public void publishMessage(Object message) {
+    public void publishMessage(Object message, String messageType) {
         iodineBungee.getProxy().getScheduler().runAsync(iodineBungee, () -> {
-            super.publishMessage(uniqueId, message);
+            super.publishMessage(uniqueId, messageType, message);
         });
     }
 }

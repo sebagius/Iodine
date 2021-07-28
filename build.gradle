@@ -1,7 +1,17 @@
-group 'dev.agius'
-version '1.0.0-SNAPSHOT'
+allprojects {
+    group 'dev.agius'
+    version '1.0.0'
+}
 
 ext {
     jedisVersion = '3.6.3'
     gsonVersion = '2.8.7'
+}
+
+task copyJars(type: Copy) {
+    from subprojects.collect { it.tasks.withType(Jar) }
+    include "*-all.jar"
+    into "$buildDir/final"
+
+    rename '(.+)-all(.+)', '$1$2'
 }

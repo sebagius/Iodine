@@ -1,4 +1,7 @@
 package dev.agius.iodine.iodinespigot;
 
-public class IodineSpigot {
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class IodineSpigot extends JavaPlugin {
+
 }

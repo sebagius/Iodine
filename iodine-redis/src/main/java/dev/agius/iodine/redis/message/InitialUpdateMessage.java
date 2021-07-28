@@ -24,13 +24,17 @@ public class InitialUpdateMessage {
     @SerializedName("game_protocol")
     public int gameProtocol;
 
+    @SerializedName("plugin_version")
+    public String pluginVersion;
+
     public InitialUpdateMessage(int maxPlayers,
                                 int onlinePlayers,
                                 int serverAmount,
                                 String proxyName,
                                 String proxyVersion,
                                 String gameVersion,
-                                int gameProtocol) {
+                                int gameProtocol,
+                                String pluginVersion) {
         this.maxPlayers = maxPlayers;
         this.onlinePlayers = onlinePlayers;
         this.serverAmount = serverAmount;
@@ -38,5 +42,6 @@ public class InitialUpdateMessage {
         this.proxyVersion = proxyVersion;
         this.gameVersion = gameVersion;
         this.gameProtocol = gameProtocol;
+        this.pluginVersion = pluginVersion;
     }
 }

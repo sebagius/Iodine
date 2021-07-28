@@ -21,6 +21,8 @@ public class IodineBungee extends Plugin {
 
     @Override
     public void onEnable() {
+
+
         loadConfig();
         String uniqueId = configuration.getString("_iodine_uuid", null);
         if(uniqueId == null) {
@@ -32,7 +34,26 @@ public class IodineBungee extends Plugin {
 
         redisController = new BungeeRedisController(this, uniqueId);
 
-        redisController.publishMessage(new PluginUpdateMessage(PluginStatus.ENABLE));
+        initialUpdate();
+    }
+
+    @Override
+    public void onLoad() {
+        if(redisController != null)
+            redisController.publishMessage(new PluginUpdateMessage(PluginStatus.LOAD), "plugin_update");
+    }
+
+    @Override
+    public void onDisable() {
+        if(redisController != null)
+            redisController.publishMessage(new PluginUpdateMessage(PluginStatus.DISABLE), "plugin_update");
+    }
+
+    /**
+     * Sends initial status to redis
+     */
+    private void initialUpdate() {
+        redisController.publishMessage(new PluginUpdateMessage(PluginStatus.ENABLE), "plugin_update");
 
         redisController.publishMessage(new InitialUpdateMessage(
                 getProxy().getConfig().getPlayerLimit(),
@@ -41,7 +62,8 @@ public class IodineBungee extends Plugin {
                 getProxy().getName(),
                 getProxy().getVersion(),
                 getProxy().getGameVersion(),
-                getProxy().getProtocolVersion())
+                getProxy().getProtocolVersion(),
+                getDescription().getVersion()), "initial"
         );
 
         getProxy().getServers().forEach((s, serverInfo) -> {
@@ -51,27 +73,22 @@ public class IodineBungee extends Plugin {
                     serverInfo.getPermission(),
                     serverInfo.isRestricted(),
                     addr.getHostName(),
-                    addr.getPort())
+                    addr.getPort()), "server_update"
             );
         });
 
         getProxy().getPlayers().forEach(proxiedPlayer -> {
-            redisController.publishMessage(new PlayerUpdateMessage(proxiedPlayer.getName(), proxiedPlayer.getUniqueId().toString(), proxiedPlayer.getServer().getInfo().getName()));
+            redisController.publishMessage(new PlayerUpdateMessage(
+                    proxiedPlayer.getName(),
+                    proxiedPlayer.getUniqueId().toString(),
+                    proxiedPlayer.getServer().getInfo().getName()), "player_update"
+            );
         });
     }
 
-    @Override
-    public void onLoad() {
-        if(redisController != null)
-            redisController.publishMessage(new PluginUpdateMessage(PluginStatus.LOAD));
-    }
-
-    @Override
-    public void onDisable() {
-        if(redisController != null)
-            redisController.publishMessage(new PluginUpdateMessage(PluginStatus.DISABLE));
-    }
-
+    /**
+     * Loads config whether it be from the disk or export it from resources
+     */
     private void loadConfig() {
         if (!getDataFolder().exists())
             getDataFolder().mkdir();
@@ -94,6 +111,9 @@ public class IodineBungee extends Plugin {
         }
     }
 
+    /**
+     * Saves the configuration from memory to disk
+     */
     private void saveConfig() {
         try {
             ConfigurationProvider.getProvider(YamlConfiguration.class).save(configuration, new File(getDataFolder(), "config.yml"));
