@@ -1,12 +1,11 @@
 package dev.agius.iodine.iodinebungee.events;
 
-import dev.agius.iodine.iodinebungee.message.PlayerCountUpdateMessage;
-import dev.agius.iodine.iodinebungee.message.PlayerUpdateMessage;
+import dev.agius.iodine.redis.message.PlayerCountUpdateMessage;
+import dev.agius.iodine.redis.message.PlayerUpdateMessage;
 import dev.agius.iodine.redis.RedisController;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.event.ServerConnectedEvent;
-import net.md_5.bungee.api.event.ServerDisconnectEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 

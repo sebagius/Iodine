@@ -1,6 +1,6 @@
 package dev.agius.iodine.iodinebungee;
 
-import dev.agius.iodine.iodinebungee.message.*;
+import dev.agius.iodine.redis.message.*;
 import dev.agius.iodine.redis.RedisController;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;

@@ -24,4 +24,8 @@ public abstract class RedisController {
         jedis.publish("iodine_updates", gson.toJson(new RedisUpdateMessage(serverType, uniqueId, object)));
     }
 
+    public void subscribe(SubscribeListener listener) {
+
+    }
+
 }

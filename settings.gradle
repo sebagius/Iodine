@@ -2,3 +2,5 @@ rootProject.name = 'iodine'
 include 'iodine-redis'
 include 'iodine-bungee'
 include 'iodine-spigot'
+include 'iodine-web'
+

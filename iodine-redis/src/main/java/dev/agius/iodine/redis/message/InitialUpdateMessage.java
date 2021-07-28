@@ -1,4 +1,4 @@
-package dev.agius.iodine.iodinebungee.message;
+package dev.agius.iodine.redis.message;
 
 import com.google.gson.annotations.SerializedName;
 

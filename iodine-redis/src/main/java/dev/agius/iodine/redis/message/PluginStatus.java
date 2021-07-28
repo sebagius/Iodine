@@ -1,4 +1,4 @@
-package dev.agius.iodine.iodinebungee.message;
+package dev.agius.iodine.redis.message;
 
 public enum PluginStatus {
     LOAD, ENABLE, DISABLE
