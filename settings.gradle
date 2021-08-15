@@ -3,4 +3,7 @@ include 'iodine-redis'
 include 'iodine-bungee'
 include 'iodine-spigot'
 include 'iodine-web'
+include 'iodine-template'
+include 'iodine-template:template-basic'
+findProject(':iodine-template:template-basic')?.name = 'template-basic'
 
